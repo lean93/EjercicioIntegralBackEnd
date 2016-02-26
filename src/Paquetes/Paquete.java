@@ -29,4 +29,8 @@ public class Paquete {
 	public double getMedioPrecio(Cliente unCliente) {
 		return getPrecioPaquete(unCliente) / 2;
 	}
+	
+	public void setTipoDePaquete(TipoPaquete unTipo){
+		tipoPaquete = unTipo;
+	}
 }
