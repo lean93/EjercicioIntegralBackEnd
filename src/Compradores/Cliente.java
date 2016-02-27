@@ -16,6 +16,9 @@ public class Cliente {
 		saldo = unSaldo;
 		compras = new ArrayList<Paquete>();
 	}
+	public Collection<Paquete> getPaquetesComprados(){
+		return compras;
+	}
 
 	public void comprarPaquete(Paquete unPaquete) {
 		

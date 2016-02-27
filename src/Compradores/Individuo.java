@@ -21,7 +21,12 @@ public class Individuo extends Cliente {
 	public void terminarCompra() throws SinSaldoException{
 		
 		realizarPago(enReserva.getMedioPrecio(this));
+		añadirPaquete(enReserva);
 		enReserva = null;
+	}
+	
+	public Paquete getPaqueteEnReserva(){
+		return enReserva;
 	}
 	
 }
