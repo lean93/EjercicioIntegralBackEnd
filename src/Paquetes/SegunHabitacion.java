@@ -12,7 +12,7 @@ public class SegunHabitacion implements TipoPaquete{
 		precioHabitaciones = unPrecio;
 		
 	}
-	public double calcularPrecioBase(Paquete unPaquete, Cliente unCliente){
+	public double calcularPrecioBase(Cliente unCliente){
 		return cantidadHabitaciones * precioHabitaciones;
 	}
 

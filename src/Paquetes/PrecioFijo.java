@@ -3,9 +3,16 @@ package Paquetes;
 import Compradores.*;
 
 public class PrecioFijo implements TipoPaquete{
+	private double precioBase;
 	
-	public double calcularPrecioBase(Paquete unPaquete, Cliente unCliente){
-		return unPaquete.getPrecioBase();
+	public PrecioFijo(double unPrecio){
+		
+		precioBase = unPrecio;
+		
+	}
+	
+	public double calcularPrecioBase(Cliente unCliente){
+		return precioBase;
 	}
 
 }

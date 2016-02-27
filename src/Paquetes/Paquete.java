@@ -3,12 +3,11 @@ package Paquetes;
 import Compradores.*;
 public class Paquete {
 
-	private double precioBase;
+	
 	private double impuesto;
 	private TipoPaquete tipoPaquete;
 
-	public Paquete(double unPrecio, double unImpuesto, TipoPaquete unTipo) {
-		precioBase = unPrecio;
+	public Paquete(double unImpuesto, TipoPaquete unTipo) {
 		impuesto = unImpuesto;
 		tipoPaquete = unTipo;
 	}
@@ -17,13 +16,10 @@ public class Paquete {
 
 	}
 
-	public double getPrecioBase() {
-		return precioBase;
-
-	}
+	
 
 	public double getPrecioPaquete(Cliente unCliente) {
-		return tipoPaquete.calcularPrecioBase(this, unCliente) * impuesto;
+		return tipoPaquete.calcularPrecioBase(unCliente) * impuesto;
 	}
 
 	public double getMedioPrecio(Cliente unCliente) {

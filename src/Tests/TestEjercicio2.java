@@ -24,9 +24,9 @@ public class TestEjercicio2 {
 	public void setUp() {
 
 		leandro = new Individuo(2000);
-		paquete1 = new Paquete(500, 1.25, new PrecioFijo());
-		paqueteMardel = new Paquete(200, 1.2,new SegunHabitacion(2, 50));
-		elTercerPaquete = new Paquete(400, 1.2,new SegunHabitacion(4, 50));
+		paquete1 = new Paquete(1.25, new PrecioFijo(500));
+		paqueteMardel = new Paquete(1.2, new SegunHabitacion(2, 50));
+		elTercerPaquete = new Paquete(1.2, new SegunHabitacion(4, 50));
 		utn = new Empresa(2000);
 	}
 
@@ -70,6 +70,9 @@ public class TestEjercicio2 {
 	    
 	    leandro.terminarCompra();
 	    
+	    
+	    //Al terminar el proceso de reserva, paga la otra mitad, y se hace efectiva la compra
+	   
 	    assertEquals(leandro.getSaldo(),1760,0.001);
 	    assertEquals(leandro.getCantidadDeCompras(),1);
 	    assertEquals(leandro.getPaqueteEnReserva(), null);

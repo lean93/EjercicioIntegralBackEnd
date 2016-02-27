@@ -21,10 +21,10 @@ public class TestEjercicio1 {
 	public void setUp(){
 	
 		 leandro = new Individuo(2000);
-		 paquete1 = new Paquete(500, 1.25, new PrecioFijo());
-		 paquete2 = new Paquete(100,1.1,new PrecioFijo());
-		 paqueteMardel = new Paquete(200, 1.2,new SegunHabitacion(2, 50));
-		 paqueteDeImpuesto = new Paquete(200, 1.3, new SegunSaldoCliente());
+		 paquete1 = new Paquete(1.25, new PrecioFijo(500));
+		 paquete2 = new Paquete(1.1,new PrecioFijo(100));
+		 paqueteMardel = new Paquete(1.2, new SegunHabitacion(2, 50));
+		 paqueteDeImpuesto = new Paquete(1.3, new SegunSaldoCliente());
 	}
 	
 	
@@ -52,7 +52,7 @@ public class TestEjercicio1 {
 	
 	@Test
 	public void precioDelPaqueteMardelEs240SiEsPrecioFijo(){
-		paqueteMardel.setTipoDePaquete(new PrecioFijo());
+		paqueteMardel.setTipoDePaquete(new PrecioFijo(200));
 		assertEquals(240, paqueteMardel.getPrecioPaquete(leandro), 0.01);
 	}
 
