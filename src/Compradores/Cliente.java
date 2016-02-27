@@ -54,7 +54,7 @@ public class Cliente {
 		double total = 0;
 
 		for (Paquete p : compras) {
-			total = p.getPrecioPaquete(this);
+			total = total + p.getPrecioPaquete(this);
 		}
 		return total;
 	}

@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import Compradores.*;
-import Excepciones.*;
 import Paquetes.*;
 
 public class TestEjercicio1 {
