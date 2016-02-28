@@ -20,14 +20,15 @@ public class Cliente {
 		return compras;
 	}
 
-	public void comprarPaquete(Paquete unPaquete) {
+	public void comprarPaquete(Paquete unPaquete) throws FalloEnCompraExcepcion{
 		
 		try{
 		realizarPago(unPaquete.getPrecioPaquete(this));
 		añadirPaquete(unPaquete);
 		
 		} catch(SinSaldoException e){
-			System.out.println(e.getMessage() );
+			System.out.println(e.getMessage());
+			throw new FalloEnCompraExcepcion("Hubo un problema en la compra");
 		} finally{
 			System.out.println("saldo del Cliente: " + getSaldo() );
 		}

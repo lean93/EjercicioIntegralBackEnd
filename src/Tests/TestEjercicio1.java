@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import Compradores.*;
-
+import Excepciones.FalloEnCompraExcepcion;
 import Paquetes.*;
 
 public class TestEjercicio1 {
@@ -34,13 +34,13 @@ public class TestEjercicio1 {
 	}
 	
 	@Test
-	public void leanCompraPaquete1YQuedaCon1375DeSaldo(){
+	public void leanCompraPaquete1YQuedaCon1375DeSaldo() throws FalloEnCompraExcepcion{
 		leandro.comprarPaquete(paquete1);
 		assertEquals(1375.0,leandro.getSaldo(),0.01);
 	}
 	
 	@Test 
-	public void leanCompraPaquete2YQuedaCon1890DeSaldo(){
+	public void leanCompraPaquete2YQuedaCon1890DeSaldo() throws FalloEnCompraExcepcion{
 		leandro.comprarPaquete(paquete2);
 		assertEquals(1890, leandro.getSaldo(),0.01);
 	}
@@ -57,7 +57,7 @@ public class TestEjercicio1 {
 	}
 
 	@Test
-	public void leanTiene1740DeSaldoDespuesDeComprarPaqueteSegunSuSaldo(){
+	public void leanTiene1740DeSaldoDespuesDeComprarPaqueteSegunSuSaldo() throws FalloEnCompraExcepcion{
 		leandro.comprarPaquete(paqueteDeImpuesto);
 		assertEquals(1740,leandro.getSaldo(),0.01);
 	}

@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import Compradores.*;
+import Excepciones.FalloEnCompraExcepcion;
 import Excepciones.SinSaldoException;
 import Paquetes.*;
 
@@ -15,6 +16,7 @@ import Paquetes.*;
 public class TestEjercicio3 {
 
 	private Individuo leandro;
+	private Individuo leanCortoDeEfectivo;
 	private Empresa utn;
 	private Paquete paquete1;
 	private Paquete paqueteMardel;
@@ -23,7 +25,8 @@ public class TestEjercicio3 {
 	@Before
 	public void setUp() {
 
-		leandro = new Individuo(200);
+		leanCortoDeEfectivo = new Individuo(200);
+		leandro = new Individuo(900);
 		paquete1 = new Paquete(1.25, new PrecioFijo(500));
 		paqueteMardel = new Paquete(1.2, new SegunHabitacion(2, 50));
 		elTercerPaquete = new Paquete(1.2, new SegunHabitacion(4, 50));
@@ -33,11 +36,28 @@ public class TestEjercicio3 {
 	public void leanNoTieneSaldoParaRealizarUnaCompra(){
 		
 		try{
-			leandro.realizarPago(paquete1.getPrecioPaquete(leandro));
-			fail("Como se quedo sin saldo, deberia fallar la compra");
-			
+			leanCortoDeEfectivo.realizarPago(paquete1.getPrecioPaquete(leandro));
+			fail("Como no tiene suficiente saldo, deberia lanzar una excepcion");
 		}catch(SinSaldoException e){
-			//asd
+			//Como capturo un "SinSaldoException", el test cumple
+		}
+	}
+	
+	@Test
+	public void falloEnLaCompraPorqueLeanSeQuedaSinSaldoPorTantasCompras(){
+		try{
+			
+			leandro.comprarPaquete(paquete1);
+			leandro.comprarPaquete(paqueteMardel);
+			leandro.comprarPaquete(elTercerPaquete);
+			fail("Como se queda sin saldo, deberia lanzar una excepcion para cortar el flujo de compra");
+			
+		}
+		catch (FalloEnCompraExcepcion e){
+			// Como capturo un "FalloEnCompraException" el test cumple
+		}
+		finally{
+			assertEquals(leandro.getCantidadDeCompras(),2);
 		}
 	}
 }

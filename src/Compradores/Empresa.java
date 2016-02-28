@@ -1,6 +1,8 @@
 package Compradores;
 
 import java.util.Collection;
+
+import Excepciones.FalloEnCompraExcepcion;
 import Paquetes.*;
 
 public class Empresa extends Cliente{
@@ -9,7 +11,7 @@ public class Empresa extends Cliente{
 		super(unSaldo);
 	}
 	
-	public void comprarVarios(Collection<Paquete> unosPaquetes){
+	public void comprarVarios(Collection<Paquete> unosPaquetes) throws FalloEnCompraExcepcion{
 	
 		for (Paquete paq : unosPaquetes){
 			comprarPaquete(paq);
