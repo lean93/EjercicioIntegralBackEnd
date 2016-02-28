@@ -16,8 +16,6 @@ public class Paquete {
 
 	}
 
-	
-
 	public double getPrecioPaquete(Cliente unCliente) {
 		return tipoPaquete.calcularPrecioBase(unCliente) * impuesto;
 	}
