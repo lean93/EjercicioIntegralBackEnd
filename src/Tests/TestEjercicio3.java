@@ -1,9 +1,6 @@
 package Tests;
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,7 +14,6 @@ public class TestEjercicio3 {
 
 	private Individuo leandro;
 	private Individuo leanCortoDeEfectivo;
-	private Empresa utn;
 	private Paquete paquete1;
 	private Paquete paqueteMardel;
 	private Paquete elTercerPaquete;
@@ -30,7 +26,6 @@ public class TestEjercicio3 {
 		paquete1 = new Paquete(1.25, new PrecioFijo(500));
 		paqueteMardel = new Paquete(1.2, new SegunHabitacion(2, 50));
 		elTercerPaquete = new Paquete(1.2, new SegunHabitacion(4, 50));
-		utn = new Empresa(2000);
 	}
 	@Test
 	public void leanNoTieneSaldoParaRealizarUnaCompra(){
@@ -39,7 +34,7 @@ public class TestEjercicio3 {
 			leanCortoDeEfectivo.realizarPago(paquete1.getPrecioPaquete(leandro));
 			fail("Como no tiene suficiente saldo, deberia lanzar una excepcion");
 		}catch(SinSaldoException e){
-			//Como capturo un "SinSaldoException", el test cumple
+			assertEquals(leanCortoDeEfectivo.getSaldo(),200,0.01);
 		}
 	}
 	
@@ -54,10 +49,8 @@ public class TestEjercicio3 {
 			
 		}
 		catch (FalloEnCompraExcepcion e){
-			// Como capturo un "FalloEnCompraException" el test cumple
-		}
-		finally{
 			assertEquals(leandro.getCantidadDeCompras(),2);
 		}
+	
 	}
 }
