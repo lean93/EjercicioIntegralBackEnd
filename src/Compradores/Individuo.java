@@ -2,14 +2,15 @@ package Compradores;
 
 import Paquetes.*;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import Excepciones.*;
 
 public class Individuo extends Cliente {
 	
-	private static final Logger logger = LogManager.getLogger();
+
+	private static final  Logger LOGGER = LoggerFactory.getLogger(Cliente.class);
 	Paquete enReserva;
 
 	public Individuo(double unSaldo) {
@@ -18,18 +19,18 @@ public class Individuo extends Cliente {
 	}
 
 	public void reservarPaquete(Paquete unPaquete) throws SinSaldoException{
-		logger.info("Reservando El Paquete");
+		LOGGER.info("Reservando El Paquete");
 		realizarPago(unPaquete.getMedioPrecio(this));
 		enReserva = unPaquete;
-		logger.info("Reserva Realizada con Exito");
+		LOGGER.info("Reserva Realizada con Exito");
 	}
 	
 	public void terminarCompra() throws SinSaldoException{
-		logger.info("Terminando operacion de reserva, Pagando la segunda mitad del paquete");
+		LOGGER.info("Terminando operacion de reserva, Pagando la segunda mitad del paquete");
 		realizarPago(enReserva.getMedioPrecio(this));
 		añadirPaquete(enReserva);
 		enReserva = null;
-		logger.info("Compra realizada, ya no tiene reservas");
+		LOGGER.info("Compra realizada, ya no tiene reservas");
 	}
 	
 	public Paquete getPaqueteEnReserva(){

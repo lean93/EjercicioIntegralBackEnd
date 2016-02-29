@@ -2,14 +2,15 @@ package Compradores;
 
 import java.util.Collection;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import Excepciones.FalloEnCompraExcepcion;
 import Paquetes.*;
 
 public class Empresa extends Cliente{
-	private static final Logger logger = LogManager.getLogger();
+	
+	private static final  Logger LOGGER = LoggerFactory.getLogger(Empresa.class);
 
 	public Empresa(double unSaldo) {
 		super(unSaldo);
@@ -17,11 +18,11 @@ public class Empresa extends Cliente{
 	
 	public void comprarVarios(Collection<Paquete> unosPaquetes) throws FalloEnCompraExcepcion{
 	
-		logger.info("Empiezo de proceso de varias compras al mismo tiempo");
+		LOGGER.info("Empiezo de proceso de varias compras al mismo tiempo");
 		for (Paquete paq : unosPaquetes){
 			comprarPaquete(paq);
 		}
-		logger.info("Todos los paquetes fueron comprado con exito");
+		LOGGER.info("Todos los paquetes fueron comprado con exito");
 	}
 	
 	

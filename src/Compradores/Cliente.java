@@ -5,13 +5,16 @@ import java.util.Collection;
 import java.util.List;
 
 import Paquetes.*;
+
 import Excepciones.*;
 
-import org.apache.logging.log4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Cliente {
 
-	private static final Logger logger = LogManager.getLogger();
+	
+	private static final  Logger LOGGER = LoggerFactory.getLogger(Cliente.class);
 
 	private double saldo;
 	private List<Paquete> compras;
@@ -29,36 +32,36 @@ public class Cliente {
 	public void comprarPaquete(Paquete unPaquete) throws FalloEnCompraExcepcion {
 
 		try {
-			logger.info("Realizando Compra");
+			LOGGER.info("Realizando Compra con un Saldo de {} ", getSaldo());
 			realizarPago(unPaquete.getPrecioPaquete(this));
 			añadirPaquete(unPaquete);
 
-			logger.info("Compra Realizada Exitosamente");
+			LOGGER.info("Compra Realizada Exitosamente");
 
 		} catch (SinSaldoException e) {
 			System.out.println(e.getMessage());
-			logger.error("Fallo en la Compra");
-			throw new FalloEnCompraExcepcion("Hubo un problema en la compra");
+			LOGGER.error("Fallo en la Compra");
+			throw new FalloEnCompraExcepcion("Hubo un problema en la compra", e);
 
 		} finally {
-			logger.info("Mostrando Saldo del Cliente");
+			LOGGER.info("Mostrando Saldo del Cliente");
 			System.out.println("saldo del Cliente: " + getSaldo());
 		}
 	}
 
 	public void realizarPago(double unMonto) throws SinSaldoException {
 		if (saldo > unMonto) {
-			logger.info("Efectuando el Pago");
+			LOGGER.info("Efectuando el Pago");
 			saldo = saldo - unMonto;
 		} else {
-			logger.error("Saldo insuficiente para realizar el pago");
+			LOGGER.error("Saldo insuficiente para realizar el pago");
 			throw new SinSaldoException("Te quedaste sin saldo pibe !!");
 		}
 
 	}
 
 	public void añadirPaquete(Paquete unPaquete) {
-		logger.info("Añadiendo el paquete a Compras");
+		LOGGER.info("Añadiendo el paquete a Compras");
 		compras.add(unPaquete);
 	}
 
@@ -83,7 +86,7 @@ public class Cliente {
 
 		Paquete masCaro = new Paquete();
 		double mayor = 0;
-		logger.info("Buscando el Paquete mas Caro");
+		LOGGER.info("Buscando el Paquete mas Caro");
 		for (Paquete unPaquete : unaListaDePaquetes) {
 
 			if (unPaquete.getPrecioPaquete(this) > mayor) {
@@ -91,7 +94,7 @@ public class Cliente {
 				mayor = unPaquete.getPrecioPaquete(this);
 			}
 		}
-		logger.info("Paquete mas caro encontrado");
+		LOGGER.info("Paquete mas caro encontrado");
 		return masCaro;
 	}
 

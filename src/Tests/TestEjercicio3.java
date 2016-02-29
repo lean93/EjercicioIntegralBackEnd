@@ -1,4 +1,5 @@
 package Tests;
+
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -8,7 +9,6 @@ import Compradores.*;
 import Excepciones.FalloEnCompraExcepcion;
 import Excepciones.SinSaldoException;
 import Paquetes.*;
-
 
 public class TestEjercicio3 {
 
@@ -27,30 +27,27 @@ public class TestEjercicio3 {
 		paqueteMardel = new Paquete(1.2, new SegunHabitacion(2, 50));
 		elTercerPaquete = new Paquete(1.2, new SegunHabitacion(4, 50));
 	}
+
 	@Test
-	public void leanNoTieneSaldoParaRealizarUnaCompra(){
-		
-		try{
+	public void leanNoTieneSaldoParaRealizarUnaCompra() {
+
+		try {
 			leanCortoDeEfectivo.realizarPago(paquete1.getPrecioPaquete(leandro));
 			fail("Como no tiene suficiente saldo, deberia lanzar una excepcion");
-		}catch(SinSaldoException e){
-			assertEquals(leanCortoDeEfectivo.getSaldo(),200,0.01);
+		} catch (SinSaldoException e) {
+			assertEquals(leanCortoDeEfectivo.getSaldo(), 200, 0.01);
 		}
 	}
-	
+
 	@Test
-	public void falloEnLaCompraPorqueLeanSeQuedaSinSaldoPorTantasCompras(){
-		try{
-			
+	public void falloEnLaCompraPorqueLeanSeQuedaSinSaldoPorTantasCompras() {
+		try {
 			leandro.comprarPaquete(paquete1);
 			leandro.comprarPaquete(paqueteMardel);
 			leandro.comprarPaquete(elTercerPaquete);
 			fail("Como se queda sin saldo, deberia lanzar una excepcion para cortar el flujo de compra");
-			
+		} catch (FalloEnCompraExcepcion e) {
+			assertEquals(leandro.getCantidadDeCompras(), 2);
 		}
-		catch (FalloEnCompraExcepcion e){
-			assertEquals(leandro.getCantidadDeCompras(),2);
-		}
-	
 	}
 }

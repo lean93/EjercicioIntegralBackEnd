@@ -7,5 +7,9 @@ public class FalloEnCompraExcepcion extends Exception{
 	public FalloEnCompraExcepcion(String mensaje){
 		super (mensaje);
 	}
+	
+	public FalloEnCompraExcepcion(String mensaje, Exception e){
+		super(mensaje, e);
+	}
 
 }
