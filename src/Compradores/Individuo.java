@@ -11,11 +11,10 @@ public class Individuo extends Cliente {
 	
 
 	private static final  Logger LOGGER = LoggerFactory.getLogger(Cliente.class);
-	Paquete enReserva;
+	Paquete enReserva = null;
 
 	public Individuo(double unSaldo) {
 		super(unSaldo);
-		// TODO Auto-generated constructor stub
 	}
 
 	public void reservarPaquete(Paquete unPaquete) throws SinSaldoException{
@@ -35,6 +34,16 @@ public class Individuo extends Cliente {
 	
 	public Paquete getPaqueteEnReserva(){
 		return enReserva;
+	}
+	
+	public void comprarPaquete(Paquete unPaquete) throws FalloEnCompraExcepcion{
+		
+		if (enReserva == null){
+			super.comprarPaquete(unPaquete);
+		} else {
+			throw new VariasComprasException("ya tenes una reserva, no podes comprar otro paquete");
+		}
+		
 	}
 	
 }

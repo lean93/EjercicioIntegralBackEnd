@@ -8,6 +8,7 @@ import org.junit.Test;
 import Compradores.*;
 import Excepciones.FalloEnCompraExcepcion;
 import Excepciones.SinSaldoException;
+import Excepciones.VariasComprasException;
 import Paquetes.*;
 
 public class TestEjercicio3 {
@@ -48,6 +49,17 @@ public class TestEjercicio3 {
 			fail("Como se queda sin saldo, deberia lanzar una excepcion para cortar el flujo de compra");
 		} catch (FalloEnCompraExcepcion e) {
 			assertEquals(leandro.getCantidadDeCompras(), 2);
+		}
+	}
+	
+	@Test
+	public void falloEnLaCompraPorqueYaTineUnaReserva() throws SinSaldoException, FalloEnCompraExcepcion{
+		try {
+			leandro.reservarPaquete(paquete1);
+			leandro.comprarPaquete(elTercerPaquete);
+			fail("como tiene una reserva no puede comprar");
+		} catch (VariasComprasException e) {
+			assertEquals(leandro.getCantidadDeCompras(), 0);
 		}
 	}
 }

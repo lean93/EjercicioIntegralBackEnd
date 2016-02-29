@@ -39,11 +39,15 @@ public class Cliente {
 			LOGGER.info("Compra Realizada Exitosamente");
 
 		} catch (SinSaldoException e) {
-			System.out.println(e.getMessage());
-			LOGGER.error("Fallo en la Compra");
-			throw new FalloEnCompraExcepcion("Hubo un problema en la compra", e);
+		
+			LOGGER.error("Sin saldo no hay compra");
+			throw new FalloEnCompraExcepcion("Falta Saldo, No se puede comprar", e);
 
-		} finally {
+		} catch (VariasComprasException e1) {
+			LOGGER.error("Ya tenes una reserva... no podes Comprar Otra");
+			throw new FalloEnCompraExcepcion("Ya tenes una reserva, No se puede seguir con la compra", e1);
+		}
+		finally {
 			LOGGER.info("Mostrando Saldo del Cliente");
 			System.out.println("saldo del Cliente: " + getSaldo());
 		}
