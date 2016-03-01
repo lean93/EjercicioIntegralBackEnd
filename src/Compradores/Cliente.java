@@ -49,7 +49,7 @@ public class Cliente {
 		}
 		finally {
 			LOGGER.info("Mostrando Saldo del Cliente");
-			System.out.println("saldo del Cliente: " + getSaldo());
+			LOGGER.info("saldo del Cliente: {} ", getSaldo());
 		}
 	}
 
