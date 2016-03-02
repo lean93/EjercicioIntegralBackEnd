@@ -2,6 +2,7 @@ package Tests;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,6 +28,10 @@ public class TestEjercicio1 {
 		 paqueteDeImpuesto = new Paquete(1.3, new SegunSaldoCliente());
 	}
 	
+	@After
+	public void tearDown(){
+		System.out.println("adios");
+	}
 	
 	@Test
 	public void leandroTiene2000DeSaldo(){

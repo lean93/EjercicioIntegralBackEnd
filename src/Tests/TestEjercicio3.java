@@ -40,26 +40,19 @@ public class TestEjercicio3 {
 		}
 	}
 
-	@Test
-	public void falloEnLaCompraPorqueLeanSeQuedaSinSaldoPorTantasCompras() {
-		try {
+	@Test(expected = FalloEnCompraExcepcion.class)
+	public void falloEnLaCompraPorqueLeanSeQuedaSinSaldoPorTantasCompras() throws FalloEnCompraExcepcion {
 			leandro.comprarPaquete(paquete1);
 			leandro.comprarPaquete(paqueteMardel);
 			leandro.comprarPaquete(elTercerPaquete);
 			fail("Como se queda sin saldo, deberia lanzar una excepcion para cortar el flujo de compra");
-		} catch (FalloEnCompraExcepcion e) {
-			assertEquals(leandro.getCantidadDeCompras(), 2);
-		}
 	}
 	
-	@Test
+	@Test(expected = VariasComprasException.class)
 	public void falloEnLaCompraPorqueYaTineUnaReserva() throws SinSaldoException, FalloEnCompraExcepcion{
-		try {
+		
 			leandro.reservarPaquete(paquete1);
 			leandro.comprarPaquete(elTercerPaquete);
 			fail("como tiene una reserva no puede comprar");
-		} catch (VariasComprasException e) {
-			assertEquals(leandro.getCantidadDeCompras(), 0);
-		}
 	}
 }
