@@ -1,5 +1,7 @@
 package Paquetes;
 
+import org.springframework.beans.factory.annotation.Required;
+
 import Compradores.*;
 public class Paquete {
 
@@ -27,8 +29,15 @@ public class Paquete {
 	public double getMedioPrecio(Cliente unCliente) {
 		return getPrecioPaquete(unCliente) / 2;
 	}
-	
-	public void setTipoDePaquete(TipoPaquete unTipo){
-		tipoPaquete = unTipo;
+	public TipoPaquete getTipoPaquete(){
+		return tipoPaquete;
+	}
+	@Required
+	public void setImpuesto(double unImpuesto){
+		this.impuesto= unImpuesto;
+	}
+    @Required
+	public void setTipoPaquete(TipoPaquete unTipo){
+		this.tipoPaquete = unTipo;
 	}
 }

@@ -30,14 +30,14 @@ public class PaqueteTest {
 	@Test
 	public void precioDelPaqueteParaUnDeterminadoClienteEsELCorrecto() {
 		when(tipoPaqueteMock.calcularPrecioBase(clienteMock)).thenReturn(200.0);
-		paquete.setTipoDePaquete(tipoPaqueteMock);
+		paquete.setTipoPaquete(tipoPaqueteMock);
 		assertEquals(300, paquete.getPrecioPaquete(clienteMock),0.01);	
 	}
 
 	@Test
 	public void elPrecioMedioDelPaqueteParaUnDeterminadoClienteEsELCorrecto() {
 		when(tipoPaqueteMock.calcularPrecioBase(clienteMock)).thenReturn(600.0);
-		paquete.setTipoDePaquete(tipoPaqueteMock);
+		paquete.setTipoPaquete(tipoPaqueteMock);
 		assertEquals(450, paquete.getMedioPrecio(clienteMock),0.01);	
 	}
 }

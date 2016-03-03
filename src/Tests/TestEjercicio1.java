@@ -57,7 +57,7 @@ public class TestEjercicio1 {
 	
 	@Test
 	public void precioDelPaqueteMardelEs240SiEsPrecioFijo(){
-		paqueteMardel.setTipoDePaquete(new PrecioFijo(200));
+		paqueteMardel.setTipoPaquete(new PrecioFijo(200));
 		assertEquals(240, paqueteMardel.getPrecioPaquete(leandro), 0.01);
 	}
 
