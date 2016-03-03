@@ -11,6 +11,10 @@ public class Paquete {
 		impuesto = unImpuesto;
 		tipoPaquete = unTipo;
 	}
+	
+	public Paquete(double unImupuesto){
+		impuesto = unImupuesto;
+	}
 
 	public Paquete() {
 

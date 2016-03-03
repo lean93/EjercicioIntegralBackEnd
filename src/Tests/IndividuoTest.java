@@ -7,7 +7,7 @@ import static org.mockito.Mockito.when;
 import org.junit.Before;
 import org.junit.Test;
 
-import Compradores.Empresa;
+
 import Compradores.Individuo;
 import Excepciones.FalloEnCompraExcepcion;
 import Excepciones.SinSaldoException;
@@ -20,13 +20,13 @@ public class IndividuoTest {
 	private Individuo leanIndividuo;
 	private Paquete paqueteMock;
 	private Paquete paqueteMock2;
-	private Paquete paqueteMock3;
+
 	@Before
 	public void setUp(){
 		leanIndividuo = new Individuo(1000);
 		paqueteMock= mock(Paquete.class);
 		paqueteMock2 = mock(Paquete.class);
-		paqueteMock3 = mock(Paquete.class);
+	
 	}
 
 	@Test
